@@ -60,6 +60,14 @@ ifeq ($(AUDIO_FEATURE_ENABLED_AGM_HIDL),true)
     $(call soong_config_set,qtiaudio,feature_agm_hidl,true)
 endif
 
+ifeq ($(AUDIO_FEATURE_ENABLE_BT_A2DP_LPI),true)
+    $(call soong_config_set,qtiaudio,feature_bt_a2dp_lpi,true)
+endif
+
+ifeq ($(AUDIO_FEATURE_ENABLED_DEVICE_PREPARE_SEQ),true)
+    $(call soong_config_set,qtiaudio,feature_device_prepare_seq,true)
+endif
+
 ifeq ($(AUDIO_FEATURE_DISABLED_DTS_EAGLE),true)
     $(call soong_config_set,qtiaudio,feature_disabled_dts_eagle,true)
 endif
