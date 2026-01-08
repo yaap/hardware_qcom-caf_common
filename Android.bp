@@ -34,6 +34,26 @@ cc_library_headers {
 }
 
 soong_config_module_type {
+    name: "android_hardware_qtiaudio_config_default",
+    module_type: "cc_defaults",
+    config_namespace: "android_hardware_audio",
+    bool_variables: [
+        "run_64bit",
+    ],
+    properties: ["compile_multilib"],
+}
+
+android_hardware_qtiaudio_config_default {
+    name: "android_hardware_qtiaudio_config_defaults",
+
+    soong_config_variables: {
+        run_64bit: {
+            compile_multilib: "64",
+        },
+    },
+}
+
+soong_config_module_type {
     name: "mpss_firmware_symlink",
     module_type: "install_symlink",
     config_namespace: "rfs",
@@ -223,6 +243,48 @@ install_symlink {
     name: "rfs_mdm_mpss_shared_symlink",
     vendor: true,
     installed_location: "rfs/mdm/mpss/shared",
+    symlink_target: "/mnt/vendor/persist/rfs/shared",
+}
+
+install_symlink {
+    name: "rfs_mdm_ois_hlos_symlink",
+    vendor: true,
+    installed_location: "rfs/mdm/ois/hlos",
+    symlink_target: "/mnt/vendor/persist/hlos_rfs/shared",
+}
+
+install_symlink {
+    name: "rfs_mdm_ois_ramdumps_symlink",
+    vendor: true,
+    installed_location: "rfs/mdm/ois/ramdumps",
+    symlink_target: "/data/vendor/tombstones/rfs/ois",
+}
+
+install_symlink {
+    name: "rfs_mdm_ois_readonly_firmware_symlink",
+    vendor: true,
+    installed_location: "rfs/mdm/ois/readonly/firmware",
+    symlink_target: "/vendor/firmware_mnt",
+}
+
+install_symlink {
+    name: "rfs_mdm_ois_readonly_vendor_firmware_symlink",
+    vendor: true,
+    installed_location: "rfs/mdm/ois/readonly/vendor/firmware",
+    symlink_target: "/vendor/firmware",
+}
+
+install_symlink {
+    name: "rfs_mdm_ois_readwrite_symlink",
+    vendor: true,
+    installed_location: "rfs/mdm/ois/readwrite",
+    symlink_target: "/mnt/vendor/persist/rfs/mdm/ois",
+}
+
+install_symlink {
+    name: "rfs_mdm_ois_shared_symlink",
+    vendor: true,
+    installed_location: "rfs/mdm/ois/shared",
     symlink_target: "/mnt/vendor/persist/rfs/shared",
 }
 
@@ -494,6 +556,48 @@ install_symlink {
 }
 
 install_symlink {
+    name: "rfs_msm_ois_hlos_symlink",
+    vendor: true,
+    installed_location: "rfs/msm/ois/hlos",
+    symlink_target: "/mnt/vendor/persist/hlos_rfs/shared",
+}
+
+install_symlink {
+    name: "rfs_msm_ois_ramdumps_symlink",
+    vendor: true,
+    installed_location: "rfs/msm/ois/ramdumps",
+    symlink_target: "/data/vendor/tombstones/rfs/ois",
+}
+
+install_symlink {
+    name: "rfs_msm_ois_readonly_firmware_symlink",
+    vendor: true,
+    installed_location: "rfs/msm/ois/readonly/firmware",
+    symlink_target: "/vendor/firmware_mnt",
+}
+
+install_symlink {
+    name: "rfs_msm_ois_readonly_vendor_firmware_symlink",
+    vendor: true,
+    installed_location: "rfs/msm/ois/readonly/vendor/firmware",
+    symlink_target: "/vendor/firmware",
+}
+
+install_symlink {
+    name: "rfs_msm_ois_readwrite_symlink",
+    vendor: true,
+    installed_location: "rfs/msm/ois/readwrite",
+    symlink_target: "/mnt/vendor/persist/rfs/msm/ois",
+}
+
+install_symlink {
+    name: "rfs_msm_ois_shared_symlink",
+    vendor: true,
+    installed_location: "rfs/msm/ois/shared",
+    symlink_target: "/mnt/vendor/persist/rfs/shared",
+}
+
+install_symlink {
     name: "rfs_msm_slpi_hlos_symlink",
     vendor: true,
     installed_location: "rfs/msm/slpi/hlos",
@@ -643,6 +747,13 @@ prebuilt_hidl_interfaces {
 }
 
 prebuilt_hidl_interfaces {
+    name: "hidl_vendor_qti_hardware_data_iwlan_interface",
+    interfaces: [
+        "vendor.qti.hardware.data.iwlan@1.0::IIWlan",
+    ],
+}
+
+prebuilt_hidl_interfaces {
     name: "hidl_vendor_qti_hardware_dsp_interface",
     interfaces: [
         "vendor.qti.hardware.dsp@1.0::IDspService",
@@ -671,6 +782,40 @@ prebuilt_hidl_interfaces {
         "vendor.qti.hardware.limits@1.0::ILimits",
         "vendor.qti.hardware.limits@1.1::ILimits",
         "vendor.qti.hardware.limits@1.2::ILimits",
+    ],
+}
+
+prebuilt_hidl_interfaces {
+    name: "hidl_vendor_qti_hardware_radio_ims_interface",
+    interfaces: [
+        "vendor.qti.hardware.radio.ims@1.0::IImsRadio",
+        "vendor.qti.hardware.radio.ims@1.1::IImsRadio",
+        "vendor.qti.hardware.radio.ims@1.2::IImsRadio",
+        "vendor.qti.hardware.radio.ims@1.3::IImsRadio",
+        "vendor.qti.hardware.radio.ims@1.4::IImsRadio",
+        "vendor.qti.hardware.radio.ims@1.5::IImsRadio",
+        "vendor.qti.hardware.radio.ims@1.6::IImsRadio",
+    ],
+}
+
+prebuilt_hidl_interfaces {
+    name: "hidl_vendor_qti_hardware_radio_qtiradio_interface",
+    interfaces: [
+        "vendor.qti.hardware.radio.qtiradio@1.0::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.1::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.2::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.3::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.4::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.5::IQtiRadio",
+        "vendor.qti.hardware.radio.qtiradio@2.6::IQtiRadio",
+    ],
+}
+
+prebuilt_hidl_interfaces {
+    name: "hidl_vendor_qti_hardware_sigma_miracast_interface",
+    interfaces: [
+        "vendor.qti.hardware.sigma_miracast@1.0::Isigma_miracast",
     ],
 }
 
